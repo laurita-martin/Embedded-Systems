@@ -26,6 +26,10 @@ DigitalOut ledRed(TRAF_RED1_PIN);
 DigitalOut ledYel(TRAF_YEL1_PIN);
 DigitalOut ledGrn(TRAF_GRN1_PIN);
 
+DigitalInOut ledRed2(TRAF_RED2_PIN, PinDirection::PIN_OUTPUT, PinMode::OpenDrainNoPull ,1);  //set initially as OFF
+DigitalInOut ledYel2(TRAF_YEL2_PIN, PinDirection::PIN_OUTPUT, PinMode::OpenDrainNoPull ,1);
+DigitalInOut ledGrn2(TRAF_GRN2_PIN, PinDirection::PIN_OUTPUT, PinMode::OpenDrainNoPull ,1);
+
 int main()
 {
     while (true) {
@@ -34,12 +38,24 @@ int main()
         } else {
             ledRed = 0;
         }
-
         if (SW3.read() == 1) {
             ledYel = 1;
         } else {
             ledYel = 0;
         }
+        if(SW4 == 1){  //SW4 pressed
+            ledGrn2 = 0;  //LED ON
+        } else{
+            ledGrn2 = 1;  //LED OFF
+        }
+        if(SW5 == 1){
+            ledYel2 = 0;
+        } else{
+            ledYel2 = 1;
+        }
     }
-}
+}  
+
+//  Explain why the parameter PullDown is needed for SW4 and SW5
+// In order to keep the given input LOW as there's nothing connecting the unused pins to ground
 

@@ -10,7 +10,7 @@
 
 static void calculateHumanBMI(Human* h);
 
-void displayHuman(const Human* h) {
+void displayHuman(const Human* h) {  //try to modify h->bmi for something else 
     printf("Age: %u, Weight: %f, Height: %f, BMI: %f", h->age, h->weight, h->height, h->bmi);
     if (h->bmi>=25.0) {
         printf("*");

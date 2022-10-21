@@ -12,15 +12,18 @@
 #define TRAF_WHITE_PIN PF_10
 
 //BusInOut Traffic_Lights_2(PC_7,PC_8,PC_9);
-DigitalInOut grnLED(TRAF_GRN2_PIN, PinDirection::PIN_OUTPUT, PinMode::OpenDrainNoPull, 0);
+DigitalInOut grnLED(TRAF_GRN2_PIN, PinDirection::PIN_OUTPUT, PinMode::OpenDrainNoPull, 0); //default ON before entering the main as PNP inverts the state
+DigitalInOut redLED(TRAF_RED2_PIN, PinDirection::PIN_OUTPUT, PinMode::OpenDrainNoPull, 1); //default OFF before entering the main
 
 int main()
 {
     //Note the logic
     while (true) {
         grnLED = 1;
+        redLED = 0;
         wait_us(1000000);
         grnLED = 0;
+        redLED = 1;
         wait_us(1000000);
     }
 }
